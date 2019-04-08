@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Full screen layout</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="script.js" type="module" defer></script>
+</head>
+
+<body>
+    <div class="arrows-wrapper top-arrow-wrapper" id="top-arrow-wrapper">
+        <div class="arrow"></div>
+        <div class="arrow"></div>
+        <div class="arrow"></div>
+    </div>
+
+    <div id="left-col" class="left-col"> 
+        <i id="close-left-col-btn" class="far fa-times-circle close-left-col"></i>
+        <img class="logo" src="myLogo.svg" alt="Logo">
+        <nav id="links-menu" class="links-menu">
+            <!-- menu items will be add dynamically in JavaScript -->
+        </nav>
+        <div class='social-icons'>
+            <a class="fab fa-linkedin-in icon"></a>
+            <a class="fab fa-codepen icon"></a>
+            <a class="fab fa-bitbucket icon"></a>
+        </div>
+    </div>
+    <i id="left-col-opener" class="left-col-opener fas fa-bars"></i>
+
+    <div class="arrows-wrapper left-arrow-wrapper" id="left-arrow-wrapper">
+        <div class="arrow"></div>
+        <div class="arrow"></div>
+        <div class="arrow"></div>
+    </div>
+
+    <main id="sections-wrapper" class="sections-wrapper">
+        <div class="section section-1" id="section-1">
+            <div class="section-content">
+                <span class="text">SECTION1!</span>
+            </div>
+        </div>
+
+        <div class="section horizontal-expanded section-2" id="section-2">
+            <div class="sub-section">
+                <div class="section-content">
+                    <span class="text">SECTION2.1!</span>
+                </div>
+            </div>
+            <div class="sub-section">
+                <div class="section-content">
+                    <span class="text">SECTION2.2!</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section section-3" id="section-3">
+            <div class="section-content">
+                <span class="text">SECTION3!</span>
+            </div>
+        </div>
+
+    </main>
+
+    <div class="arrows-wrapper right-arrow-wrapper" id="right-arrow-wrapper">
+        <div class="arrow"></div>
+        <div class="arrow"></div>
+        <div class="arrow"></div>
+    </div>
+
+    <nav id="vertical-dots-wrapper" class="right-dots-wrapper" direction="vertical">
+        <!-- dots will be add dynamically in JavaScript -->
+    </nav>
+
+    <nav id="horizontal-dots-wrapper" class="bottom-dots-wrapper" direction="horizontal">
+        <!-- dots will be add dynamically in JavaScript -->
+    </nav>
+
+    <div class="arrows-wrapper bottom-arrow-wrapper" id="bottom-arrow-wrapper">
+        <div class="arrow"></div>
+        <div class="arrow"></div>
+        <div class="arrow"></div>
+    </div>
+
+</body>
+
+</html>

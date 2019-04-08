@@ -1,0 +1,314 @@
+html{
+    /* After font-size change, check .sub-section margin-right
+    to remove empty space between inline-blocks.*/
+    font-size: 20px;
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: 'Rubik Mono One';
+    src: url(./RubikMonoOne-Regular.ttf) format('truetype');
+}
+
+* {
+    font-family: 'Rubik Mono One';
+    color: #bbb;
+}
+
+/* animated arrows start */
+.arrows-wrapper{
+    /* background-color: green; */
+    width: 7vmin; 
+    height: 7vmin;
+    z-index: 2;
+    cursor: pointer;
+}
+   
+.arrow{
+    width: 35%;
+    height: 35%;
+    position: absolute;
+    left: 50%;
+    /*   background-color: red; */
+    background-color: transparent;
+    border-width: 0.7vmin;
+    border-color: white transparent transparent white;
+    border-style: solid;
+    border-radius: 0.3vmin;
+    opacity: 0;
+
+    /*   animation: pulse 2s linear 0 infinite normal none running; */
+    /*   animation: pulse 2s ease 1s infinite alternate none; */
+    animation: pulse 2s linear 0s infinite normal none;
+}
+
+.arrow:nth-child(1){
+    transform: translate(-50%, 30%) rotate(45deg);
+    animation-delay: 0.5s;
+}
+
+.arrow:nth-child(2){
+    transform: translate(-50%, 70%) rotate(45deg);
+    animation-delay: 0.25s;
+}
+
+.arrow:nth-child(3){
+    transform: translate(-50%, 110%) rotate(45deg);
+    animation-delay: 0;
+}
+
+@keyframes pulse{
+    0%  { opacity: 0 }
+    50% { opacity: 0.5 }
+    100% {  opacity: 0 }
+}
+/* animated arrows end */
+
+.top-arrow-wrapper{
+    position: fixed; 
+    top: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.left-arrow-wrapper{
+    position: fixed; 
+    left: 4%;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+}
+
+.right-arrow-wrapper{
+    position: fixed; 
+    right: 4%;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+}
+
+.bottom-arrow-wrapper{
+    position: fixed; 
+    left: 50%;
+    bottom: 1%;
+    transform: rotate(180deg) translateX(50%);
+}
+
+.left-col{
+    position: fixed;
+    opacity: 0;
+    left: 0;
+    height: 100vh;
+    padding: 1rem 0;
+    background-color: teal;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    visibility: hidden;
+}
+
+.logo{
+    width: 60%;
+}
+
+.left-col-opener{
+    position: fixed;
+    top: 50%;
+    left: 2rem;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: #bbb;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.close-left-col{
+    align-self: flex-end;
+    margin-right: 10%;
+    color: #bbb;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.links-menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    /* background-color: red; */
+
+}
+
+.link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    color: #bbb;
+    border: solid 3px #bbb;
+    border-radius: 100px;
+    padding: 10px;
+    margin: 10px 0;
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.089);
+
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard syntax */
+}
+
+.link:hover{
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+.social-icons{
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+    justify-items: center;
+}
+
+.icon{
+    cursor: pointer;
+    padding: 0.4rem;
+    margin: 0 10px;
+    /* background-color: red; */
+    border-radius: 50%;
+    border: solid #bbb 3px;
+}
+
+.fa-linkedin-in{
+    background-color: #0076b1;
+    color: #bbb;
+    /* color: white; */
+}
+
+.fa-codepen{
+    background-color: #252629;
+    /* color: white; */
+    color: #bbb;
+}
+
+.fa-bitbucket{
+    background-color: #0083fa;
+    color: #bbb;
+    /* color: white; */
+}
+
+.sections-wrapper{
+    width: 100%;
+    height: 100vh;
+    /* background-color: pink;  */
+    position: relative;
+}
+
+.section{
+    width: 100%;
+    height: 100vh;
+}
+
+/* 
+.horizontal-expanded enable horizontal scrolling
+.horizontal-expanded::-webkit-scrollbar hide horizontal scrollBar
+There can't be overflow: hidden, because it stop scrolling.
+*/
+.horizontal-expanded{
+    /* overflow-x instead of overflow is important, because
+    it reduces checking direction of scroll event in JS. Using overflow-x
+    gives me 100% sure that every scroll is horizontal. */
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+/* hide horizontal scrollbar in chrome */
+.horizontal-expanded::-webkit-scrollbar { 
+    display: none; 
+}
+
+/* hide horizontal scrollbar in firefox */
+.horizontal-expanded{
+    scrollbar-width: none;
+}
+
+
+.sub-section{
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    margin-right: -0.8rem;
+}
+
+.sub-section:nth-child(1){
+    background-color: rgb(103, 58, 183);
+}
+
+.sub-section:nth-child(2){
+    background-color: rgb(0, 200, 83);
+}
+
+.section-content{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.text{
+    font-size: 50px;
+}
+
+.section-1{    
+    background-color: rgb(3, 169, 244);
+}
+
+.section-2{
+    background-color: rgb(0, 150, 136);
+}
+
+.section-3{
+    background-color: rgb(191, 54, 12);
+}
+
+.right-dots-wrapper{
+    position: fixed;
+    right: 1%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: teal; */
+}
+
+.bottom-dots-wrapper{
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    /* background-color: teal; */
+    align-items: center;
+    justify-items: center;
+}
+
+.dot{
+    cursor: pointer;
+    height: 1vmax;
+    width: 1vmax;
+    background-color: #bbb;
+    border-radius: 50%;
+    margin: 1vmin 1vmin;
+}
+
+.dot-active{
+    height: 2vmax;
+    width: 2vmax;
+}
