@@ -12,13 +12,45 @@ html, body{
 
 @font-face {
     font-family: 'Rubik Mono One';
-    src: url(./RubikMonoOne-Regular.ttf) format('truetype');
+    src: url(assets/fonts/RubikMonoOne-Regular.ttf) format('truetype');
 }
 
 * {
     font-family: 'Rubik Mono One';
     color: #bbb;
 }
+
+/* instruction popup start */
+
+.instruction-popup{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background-color: gray;
+    z-index: 3;
+    text-align: center;
+}
+
+.instruction-popup .navi-options{
+    text-align: left;
+}
+
+.instruction-popup .navi-options li{
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    margin-left: 3rem;
+}
+
+.instruction-popup img{
+    width: 3rem;
+    height: 3rem;
+}
+
+/* instructions popup end */
 
 /* animated arrows start */
 .arrows-wrapper{
