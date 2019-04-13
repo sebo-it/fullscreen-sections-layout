@@ -12,8 +12,10 @@ I used pure JavaScript without any framework or library.
 Interesting part of code:
 - custom JavaScript events,
 - animation based on requestAnimationFrame function,
+- localStorage,
 - basic JSDoc documentation,
-- dynamic menu.
+- dynamic menu,
+- instructions with slider.
 
 Previous Git history won't be published.
 

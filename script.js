@@ -105,13 +105,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const instructionVisitedFlag = localStorage.getItem('instruction_was_displayed_in_the_past');
             if (instructionVisitedFlag === null){
                 console.log('show instruction popup and set flag');
-                instructionsWrapper.style.visibility = "visible";
+                instructionsWrapper.style.opacity = "1";
                 localStorage.setItem('instruction_was_displayed_in_the_past', '1')
             }
         }
     } catch (error) {
         console.log("localStorage off");
-        instructionsWrapper.style.visibility = "visible";
+        instructionsWrapper.style.opacity = "1";
     }
 
     topArrowBtn.addEventListener('setVisibilityTopArrow', setVisibilityTopArrowEventHandler);
@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function closeInstructions() {
-        instructionsWrapper.style.display = "none";
+        fadeOut(instructionsWrapper, 600, null);
     }
 
     function createSectionsObj() {

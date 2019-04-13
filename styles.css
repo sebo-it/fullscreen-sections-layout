@@ -27,7 +27,8 @@ html, body{
 /* instruction popup start */
 
 .instruction-popup{
-    visibility: hidden;
+    /* opacity is animated in JS */
+    opacity: 0;
 
     position: absolute;
     top: 50%;
