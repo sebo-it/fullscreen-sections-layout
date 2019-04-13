@@ -17,6 +17,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     */
 
+    const instructionsWrapper = document.getElementById("instructions");
+    const instructionCloseBtn = instructionsWrapper.querySelector("#close-instructions-popup-btn");
+    instructionCloseBtn.addEventListener("click", closeInstructions);
+    const instructionsData = [
+        {"imageSrc": "assets/images/scroll-tip.svg", "imageAlt": "Navigation by scroll wheel tip", "text": "scroll wheel"},
+        {"imageSrc": "assets/images/swipe-tip.svg", "imageAlt": "Navigation by drag and drop tip", "text": "swipe by mouse on desktop (drag and drop)"},
+        {"imageSrc": "assets/images/arrow-icons-tip.svg", "imageAlt": "Navigation by arrow icons", "text": "arrow icons"},
+        {"imageSrc": "assets/images/arrow-keyboard-tip.svg", "imageAlt": "Navigation by arrow on keyboard", "text": "arrow buttons on keyboard"},
+        {"imageSrc": "assets/images/ui-dots-tip.svg", "imageAlt": "Navigation by navigation dots", "text": "dots"},
+        {"imageSrc": "assets/images/left-menu-tip.svg", "imageAlt": "Navigation by menu links", "text": "left menu links buttons"}
+
+    ];
+    let currentInstructionIndex = 0;
+    const instructionPhoto = instructionsWrapper.querySelector("#instruction-photo");
+    const instructionDescription = instructionsWrapper.querySelector("#instruction-description");
+    instructionPhoto.src = instructionsData[currentInstructionIndex].imageSrc;
+    instructionPhoto.alt = instructionsData[currentInstructionIndex].imageAlt;
+    instructionDescription.textContent = instructionsData[currentInstructionIndex].text;
+    const prevInstructionBtn = instructionsWrapper.querySelector("#previous-instruction-arrow");
+    const nextInstructionBtn = instructionsWrapper.querySelector("#next-instruction-arrow");
+
+    prevInstructionBtn.addEventListener("click", showPrevInstruction);
+    nextInstructionBtn.addEventListener("click", showNextInstruction);
+
     //sectionsWrapper - Main sections container. On this object I will use translateY to show specific vertical section.
     const sectionsWrapper = document.getElementById("sections-wrapper");
 
@@ -117,6 +141,34 @@ document.addEventListener("DOMContentLoaded", () => {
     leftColCloseBtn.addEventListener("click", closeLeftCol);
 
     //////////////////////////FUNCTIONS///////////////////////
+
+    function showPrevInstruction(){
+        if (currentInstructionIndex > 0){
+            currentInstructionIndex--;
+        } else if (currentInstructionIndex == 0){
+            currentInstructionIndex = instructionsData.length-1;
+        }
+
+        instructionPhoto.src = instructionsData[currentInstructionIndex].imageSrc;
+    instructionPhoto.alt = instructionsData[currentInstructionIndex].imageAlt;
+    instructionDescription.textContent = instructionsData[currentInstructionIndex].text;
+    }
+
+    function showNextInstruction(){
+        if (currentInstructionIndex < instructionsData.length-1){
+            currentInstructionIndex++;
+        } else if (currentInstructionIndex == instructionsData.length-1){
+            currentInstructionIndex = 0;
+        }
+
+        instructionPhoto.src = instructionsData[currentInstructionIndex].imageSrc;
+    instructionPhoto.alt = instructionsData[currentInstructionIndex].imageAlt;
+    instructionDescription.textContent = instructionsData[currentInstructionIndex].text;
+    }
+
+    function closeInstructions(){
+        instructionsWrapper.style.display = "none";
+    }
 
     function createSectionsObj() {
         const returningSectionsArr = [];

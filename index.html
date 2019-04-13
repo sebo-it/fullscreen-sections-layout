@@ -14,16 +14,24 @@
 
 <body>
 
-    <div class="instruction-popup">
-        <h3>Instructions:</h3>
-        <ul class="navi-options"><h4>You have several options to navigate on website, look and have fun :)</h4>        
-        <li>scroll wheel <img src="assets/images/scroll-tip.svg" alt="Navigation by scroll wheel tip"> </li>
-            <li>swipe by mouse on desktop (drag and drop) / swipe on mobile <img src="assets/images/swipe-tip.svg" alt="Navigation by drag and drop tip"> </li>
-            <li>arrow icons <img src="assets/images/arrow-icons-tip.svg" alt="Navigation by arrow icons"> </li>
-            <li>arrow buttons on keyboard <img src="assets/images/arrow-keyboard-tip.svg" alt="Navigation by arrow on keyboard"> </li>
-            <li>dots <img src="assets/images/ui-dots-tip.svg" alt="Navigation by navigation dots"> </li>
-            <li>left menu links buttons <img src="assets/images/left-menu-tip.svg" alt="Navigation by menu links"> </li>
-        </ul>
+    <div id="instructions" class="instruction-popup">
+
+            <span class="first-row">
+                <h3 class="header reset-top-margin">Navigation instructions:</h3>
+                <i id="close-instructions-popup-btn" class="close-instructions far fa-times-circle"></i>
+            </span>
+
+            <p>You have several options to navigate on my website, look, use and have fun :)</p>
+           
+            <div class="instruction-slider">
+                <span id="previous-instruction-arrow" class="instruction-arrow"><</span>
+                <div class="instruction-content">
+                    <img id="instruction-photo" src="" alt="" class="image">
+                    <span id="instruction-description" class="description"></span>
+                </div>
+                <span id="next-instruction-arrow" class="instruction-arrow">></span>
+
+            </div>
     </div>
 
     <div class="arrows-wrapper top-arrow-wrapper" id="top-arrow-wrapper">
@@ -32,7 +40,7 @@
         <div class="arrow"></div>
     </div>
 
-    <div id="left-col" class="left-col"> 
+    <div id="left-col" class="left-col">
         <i id="close-left-col-btn" class="far fa-times-circle close-left-col"></i>
         <img class="logo" src="assets/images/myLogo.svg" alt="Logo">
         <nav id="links-menu" class="links-menu">
