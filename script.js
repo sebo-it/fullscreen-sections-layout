@@ -21,12 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const instructionCloseBtn = instructionsWrapper.querySelector("#close-instructions-popup-btn");
     instructionCloseBtn.addEventListener("click", closeInstructions);
     const instructionsData = [
-        {"imageSrc": "assets/images/scroll-tip.svg", "imageAlt": "Navigation by scroll wheel tip", "text": "scroll wheel"},
-        {"imageSrc": "assets/images/swipe-tip.svg", "imageAlt": "Navigation by drag and drop tip", "text": "swipe by mouse on desktop (drag and drop)"},
-        {"imageSrc": "assets/images/arrow-icons-tip.svg", "imageAlt": "Navigation by arrow icons", "text": "arrow icons"},
-        {"imageSrc": "assets/images/arrow-keyboard-tip.svg", "imageAlt": "Navigation by arrow on keyboard", "text": "arrow buttons on keyboard"},
-        {"imageSrc": "assets/images/ui-dots-tip.svg", "imageAlt": "Navigation by navigation dots", "text": "dots"},
-        {"imageSrc": "assets/images/left-menu-tip.svg", "imageAlt": "Navigation by menu links", "text": "left menu links buttons"}
+        { "imageSrc": "assets/images/scroll-tip.svg", "imageAlt": "Navigation by scroll wheel tip", "text": "scroll wheel" },
+        { "imageSrc": "assets/images/swipe-tip.svg", "imageAlt": "Navigation by drag and drop tip", "text": "swipe by mouse on desktop (drag and drop)" },
+        { "imageSrc": "assets/images/arrow-icons-tip.svg", "imageAlt": "Navigation by arrow icons", "text": "arrow icons" },
+        { "imageSrc": "assets/images/arrow-keyboard-tip.svg", "imageAlt": "Navigation by arrow on keyboard", "text": "arrow buttons on keyboard" },
+        { "imageSrc": "assets/images/ui-dots-tip.svg", "imageAlt": "Navigation by navigation dots", "text": "dots" },
+        { "imageSrc": "assets/images/left-menu-tip.svg", "imageAlt": "Navigation by menu links", "text": "left menu links buttons" }
 
     ];
     let currentInstructionIndex = 0;
@@ -98,6 +98,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const leftColCloseBtn = document.getElementById("close-left-col-btn");
 
+    // check if localstorage on and check did user read an instruction. If yes, hide it, else show (by default and set flag)
+    try {
+        if (window.localStorage) {
+            console.log("localStorage on");
+            const instructionVisitedFlag = localStorage.getItem('instruction_was_displayed_in_the_past');
+            if (instructionVisitedFlag === null){
+                console.log('show instruction popup (default) and set flag');
+                localStorage.setItem('instruction_was_displayed_in_the_past', '1')
+            } else {
+                console.log("hide instructions, beacause user read it in the past")
+                instructionsWrapper.style.display = "none";
+            }
+        }
+    } catch (error) {
+        console.log("localStorage off");
+    }
+
     topArrowBtn.addEventListener('setVisibilityTopArrow', setVisibilityTopArrowEventHandler);
     leftArrowBtn.addEventListener('setVisibilityLeftArrow', setVisibilityLeftArrowEventHandler);
     rightArrowBtn.addEventListener('setVisibilityRightArrow', setVisibilityRightArrowEventHandler);
@@ -142,35 +159,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //////////////////////////FUNCTIONS///////////////////////
 
-    function changeInstructionEventHandler(changeInstructionEvent){
+    function changeInstructionEventHandler(changeInstructionEvent) {
         changeInstructionEvent.stopPropagation();
-        
+
         instructionPhoto.src = instructionsData[currentInstructionIndex].imageSrc;
         instructionPhoto.alt = instructionsData[currentInstructionIndex].imageAlt;
-        instructionDescription.textContent = instructionsData[currentInstructionIndex].text;    
+        instructionDescription.textContent = instructionsData[currentInstructionIndex].text;
     }
 
-    function showPrevInstruction(){
-        if (currentInstructionIndex > 0){
+    function showPrevInstruction() {
+        if (currentInstructionIndex > 0) {
             currentInstructionIndex--;
-        } else if (currentInstructionIndex == 0){
-            currentInstructionIndex = instructionsData.length-1;
+        } else if (currentInstructionIndex == 0) {
+            currentInstructionIndex = instructionsData.length - 1;
         }
 
         instructionsWrapper.dispatchEvent(changeInstructionEvent);
     }
 
-    function showNextInstruction(){
-        if (currentInstructionIndex < instructionsData.length-1){
+    function showNextInstruction() {
+        if (currentInstructionIndex < instructionsData.length - 1) {
             currentInstructionIndex++;
-        } else if (currentInstructionIndex == instructionsData.length-1){
+        } else if (currentInstructionIndex == instructionsData.length - 1) {
             currentInstructionIndex = 0;
         }
 
         instructionsWrapper.dispatchEvent(changeInstructionEvent);
     }
 
-    function closeInstructions(){
+    function closeInstructions() {
         instructionsWrapper.style.display = "none";
     }
 
