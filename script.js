@@ -98,21 +98,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const leftColCloseBtn = document.getElementById("close-left-col-btn");
 
-    // check if localstorage on and check did user read an instruction. If yes, hide it, else show (by default and set flag)
+    // check if localstorage is turn on and check if user read an instruction.
     try {
         if (window.localStorage) {
             console.log("localStorage on");
             const instructionVisitedFlag = localStorage.getItem('instruction_was_displayed_in_the_past');
             if (instructionVisitedFlag === null){
-                console.log('show instruction popup (default) and set flag');
+                console.log('show instruction popup and set flag');
+                instructionsWrapper.style.visibility = "visible";
                 localStorage.setItem('instruction_was_displayed_in_the_past', '1')
-            } else {
-                console.log("hide instructions, beacause user read it in the past")
-                instructionsWrapper.style.display = "none";
             }
         }
     } catch (error) {
         console.log("localStorage off");
+        instructionsWrapper.style.visibility = "visible";
     }
 
     topArrowBtn.addEventListener('setVisibilityTopArrow', setVisibilityTopArrowEventHandler);
