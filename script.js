@@ -32,14 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentInstructionIndex = 0;
     const instructionPhoto = instructionsWrapper.querySelector("#instruction-photo");
     const instructionDescription = instructionsWrapper.querySelector("#instruction-description");
-    instructionPhoto.src = instructionsData[currentInstructionIndex].imageSrc;
-    instructionPhoto.alt = instructionsData[currentInstructionIndex].imageAlt;
-    instructionDescription.textContent = instructionsData[currentInstructionIndex].text;
     const prevInstructionBtn = instructionsWrapper.querySelector("#previous-instruction-arrow");
     const nextInstructionBtn = instructionsWrapper.querySelector("#next-instruction-arrow");
 
     prevInstructionBtn.addEventListener("click", showPrevInstruction);
     nextInstructionBtn.addEventListener("click", showNextInstruction);
+    const changeInstructionEvent = new CustomEvent('changeInstruction', { bubbles: true, cancelable: true });
+    instructionsWrapper.addEventListener("changeInstruction", changeInstructionEventHandler);
+    instructionsWrapper.dispatchEvent(changeInstructionEvent);
 
     //sectionsWrapper - Main sections container. On this object I will use translateY to show specific vertical section.
     const sectionsWrapper = document.getElementById("sections-wrapper");
@@ -142,6 +142,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //////////////////////////FUNCTIONS///////////////////////
 
+    function changeInstructionEventHandler(changeInstructionEvent){
+        changeInstructionEvent.stopPropagation();
+        
+        instructionPhoto.src = instructionsData[currentInstructionIndex].imageSrc;
+        instructionPhoto.alt = instructionsData[currentInstructionIndex].imageAlt;
+        instructionDescription.textContent = instructionsData[currentInstructionIndex].text;    
+    }
+
     function showPrevInstruction(){
         if (currentInstructionIndex > 0){
             currentInstructionIndex--;
@@ -149,9 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
             currentInstructionIndex = instructionsData.length-1;
         }
 
-        instructionPhoto.src = instructionsData[currentInstructionIndex].imageSrc;
-    instructionPhoto.alt = instructionsData[currentInstructionIndex].imageAlt;
-    instructionDescription.textContent = instructionsData[currentInstructionIndex].text;
+        instructionsWrapper.dispatchEvent(changeInstructionEvent);
     }
 
     function showNextInstruction(){
@@ -161,9 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
             currentInstructionIndex = 0;
         }
 
-        instructionPhoto.src = instructionsData[currentInstructionIndex].imageSrc;
-    instructionPhoto.alt = instructionsData[currentInstructionIndex].imageAlt;
-    instructionDescription.textContent = instructionsData[currentInstructionIndex].text;
+        instructionsWrapper.dispatchEvent(changeInstructionEvent);
     }
 
     function closeInstructions(){

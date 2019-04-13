@@ -91,6 +91,7 @@ html, body{
     grid-template-rows: auto auto;
     grid-gap: 1rem;
     justify-items: center;
+    align-items: center;
 }
 
 .instruction-popup img{
@@ -102,6 +103,8 @@ html, body{
 
 .instruction-popup .description{
     text-align: center;
+    width: auto;
+    height: auto;
 }
 
 /* instructions popup end */
