@@ -302,10 +302,10 @@ html, body{
     color: #bbb;
 }
 
-.fa-bitbucket{
-    background-color: #0083fa;
-    color: #bbb;
+.fa-github{
+    background-color: #252629;
     /* color: white; */
+    color: #bbb;
 }
 
 .sections-wrapper{
