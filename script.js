@@ -105,13 +105,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const instructionVisitedFlag = localStorage.getItem('instruction_was_displayed_in_the_past');
             if (instructionVisitedFlag === null){
                 console.log('show instruction popup and set flag');
-                instructionsWrapper.style.opacity = "1";
+                instructionsWrapper.classList.add("instruction-popup-display");
+                instructionsWrapper.classList.remove("display-none");
                 localStorage.setItem('instruction_was_displayed_in_the_past', '1')
             }
         }
     } catch (error) {
         console.log("localStorage off");
-        instructionsWrapper.style.opacity = "1";
+        instructionsWrapper.classList.add("instruction-popup-display");
     }
 
     topArrowBtn.addEventListener('setVisibilityTopArrow', setVisibilityTopArrowEventHandler);
@@ -187,7 +188,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function closeInstructions() {
-        fadeOut(instructionsWrapper, 600, null);
+        fadeOut(instructionsWrapper, 600, ()=>{
+            instructionsWrapper.style.opacity = "1";
+            instructionsWrapper.classList.remove("instruction-popup-display");
+            instructionsWrapper.classList.add("display-none");
+        });
     }
 
     function createSectionsObj() {
@@ -909,7 +914,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 requestAnimationFrame(animate);
             } else {
                 // console.log('Animation completed');
-                onCompleteFn();
+                typeof onCompleteFn === 'function' && onCompleteFn();
             }
 
         });

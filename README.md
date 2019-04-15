@@ -11,6 +11,7 @@ I used pure JavaScript without any framework or library.
 
 Interesting part of code:
 - custom JavaScript events,
+- custom callbacks,
 - animation based on requestAnimationFrame function,
 - localStorage,
 - basic JSDoc documentation,
