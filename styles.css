@@ -28,6 +28,10 @@ html, body{
     display: none;
 }
 
+a{
+    text-decoration: none;
+}
+
 /* instruction popup start */
 
 /* Display value for instruction popup when it's visible. Separate for use in JS */
