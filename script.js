@@ -233,14 +233,14 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     function initVerticalDots() {
         for (let i = 0; i < sections.length; i++) {
-            const dot = document.createElement("div");
+            const dot = document.createElement("a");
             dot.className = "dot";
 
-            dot.addEventListener("click", () => {
-                if (!processAnimationFlag) {
-                    location.hash = "#" + (i + 1);
-                }
-            });
+            if (sections[i].subSections.length > 0) {
+                dot.href = "#" + (i + 1) + '/' + '1';
+            } else {
+                dot.href = "#" + (i + 1);
+            }
 
             verticalDotsWrapper.appendChild(dot);
         }
