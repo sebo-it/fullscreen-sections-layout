@@ -2,7 +2,6 @@ Website layout - fullscreen sections, which can be slide by:
 - URL,
 - scroll wheel,
 - mouse swipe,
-- touch swipe,
 - keyboard buttons,
 - UI arrows,
 - anchor links.
