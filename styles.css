@@ -186,11 +186,23 @@ a{
     transform: translateX(-50%);
 }
 
+.top-arrow-wrapper-mobile-position{
+    top: initial;
+    bottom: 1%;
+    left: 25%;
+}
+
 .left-arrow-wrapper{
     position: fixed; 
     left: 4%;
     top: 50%;
     transform: translateY(-50%) rotate(-90deg);
+}
+
+.left-arrow-wrapper-mobile-position{
+    top: initial;
+    bottom: 1%;
+    transform: rotate(-90deg);
 }
 
 .right-arrow-wrapper{
@@ -200,11 +212,21 @@ a{
     transform: translateY(-50%) rotate(90deg);
 }
 
+.right-arrow-wrapper-mobile-position{
+    top: initial;
+    bottom: 1%;
+    transform: rotate(90deg);
+}
+
 .bottom-arrow-wrapper{
     position: fixed; 
     left: 50%;
     bottom: 1%;
     transform: rotate(180deg) translateX(50%);
+}
+
+.bottom-arrow-wrapper-mobile-position{
+    left: 75%;
 }
 
 .left-col{
@@ -233,8 +255,16 @@ a{
     transform: translate(-50%, -50%);
     z-index: 2;
     color: #bbb;
-    font-size: 2rem;
+    font-size: 5vmin;
+    /* font-size: 2rem; */
     cursor: pointer;
+}
+
+.left-col-opener-mobile-position{
+    top: initial;
+    bottom: 1%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .close-left-col{
@@ -335,6 +365,7 @@ There can't be overflow: hidden, because it stop scrolling.
     gives me 100% sure that every scroll is horizontal. */
     overflow-x: auto;
     white-space: nowrap;
+    touch-action: none;
 }
 
 /* hide horizontal scrollbar in chrome */
@@ -367,12 +398,13 @@ There can't be overflow: hidden, because it stop scrolling.
     width: 100%;
     height: 100%;
     display: grid;
+    justify-items: center;
     justify-content: center;
     align-items: center;
 }
 
 .text{
-    font-size: 50px;
+    font-size: 5rem;
 }
 
 .section-1{    
@@ -421,4 +453,37 @@ There can't be overflow: hidden, because it stop scrolling.
 .dot-active{
     height: 2vmax;
     width: 2vmax;
+}
+
+@media (max-width: 2000px) {
+    .text{
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .text{
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .text{
+        font-size: 2rem;
+    }
+
+    .dot{
+        padding: 0.3rem;
+    }
+
+    .dot-active{
+        height: 3vmax;
+        width: 3vmax;
+    }
+}
+
+@media (max-width: 576px) {
+    .text{
+        font-size: 1rem;
+    }
 }

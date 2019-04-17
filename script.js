@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (window.localStorage) {
             console.log("localStorage on");
             const instructionVisitedFlag = localStorage.getItem('instruction_was_displayed_in_the_past');
-            if (instructionVisitedFlag === null){
+            if (instructionVisitedFlag === null) {
                 console.log('show instruction popup and set flag');
                 instructionsWrapper.classList.add("instruction-popup-display");
                 instructionsWrapper.classList.remove("display-none");
@@ -133,10 +133,6 @@ document.addEventListener("DOMContentLoaded", () => {
     rightArrowBtn.addEventListener("click", tryGoRight);
     bottomArrowBtn.addEventListener("click", tryGoDown);
 
-    document.addEventListener('wheel', scrollWheelHandler);
-
-    window.addEventListener('keydown', keydownEventHandler);
-    window.addEventListener('keyup', keyUpEventHandler);
 
     /* SectionsWrapper has mousedown and mousemove to start and perform swipe only when use
      clicks and drag cursor on section.
@@ -144,13 +140,29 @@ document.addEventListener("DOMContentLoaded", () => {
      problem when swipe starts on page and end with cursor out of it (then mouseup assign to sectionsWrapper
      doesn't trigger).  
     */
-    sectionsWrapper.addEventListener("mousedown", startSwipeByMouse);
-    sectionsWrapper.addEventListener('mousemove', moveSectionWithMouse);
-    document.addEventListener('mouseup', finishSwipeByMouse);
+    if ("ontouchstart" in document.documentElement) {
+        console.log("your device is a touch screen device.");
+        leftColOpenerBtn.classList.add("left-col-opener-mobile-position");
+        topArrowBtn.classList.add("top-arrow-wrapper-mobile-position");
+        leftArrowBtn.classList.add("left-arrow-wrapper-mobile-position");
+        rightArrowBtn.classList.add("right-arrow-wrapper-mobile-position");
+        bottomArrowBtn.classList.add("bottom-arrow-wrapper-mobile-position");
+    }
+    else {
+        console.log("your device is NOT a touch device");
+        
+        window.addEventListener('keydown', keydownEventHandler);
+        window.addEventListener('keyup', keyUpEventHandler);
+        document.addEventListener('wheel', scrollWheelHandler);
 
-    document.addEventListener("touchstart", startSwipeByTouch);
-    document.addEventListener("touchmove", touchMoveEventHandler);
-    document.addEventListener("touchend", touchEndEventHandler);
+        sectionsWrapper.addEventListener("mousedown", startSwipeByMouse);
+        sectionsWrapper.addEventListener('mousemove', moveSectionWithMouse);
+        document.addEventListener('mouseup', finishSwipeByMouse);
+    
+        document.addEventListener("touchstart", startSwipeByTouch);
+        document.addEventListener("touchmove", touchMoveEventHandler);
+        document.addEventListener("touchend", touchEndEventHandler);
+    }
 
     window.addEventListener("hashchange", navigateByURL);
 
@@ -188,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function closeInstructions() {
-        fadeOut(instructionsWrapper, 600, ()=>{
+        fadeOut(instructionsWrapper, 600, () => {
             instructionsWrapper.style.opacity = "1";
             instructionsWrapper.classList.remove("instruction-popup-display");
             instructionsWrapper.classList.add("display-none");
