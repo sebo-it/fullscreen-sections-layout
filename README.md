@@ -18,7 +18,7 @@ Interesting part of code:
 - dynamic menu,
 - instructions with slider.
 
-For testers who use web browser responsive mode: I've implemented rule, which check only once (in the real world: do we often switch on / off touchscreen? :)) if user has touchscreen or not, so while tests you probably need to, clear cache and refresh page with changing responsive mode options. You should see another appointment with instructions, when you clear cache and reload page.
+For testers who use web browser responsive mode: I've implemented rule, which check only once if user has touchscreen or not (I think that, in the real world it is unheard to switch on/off touchscreen, maybe users with touchscreen laptops can do this, but it's not certain if JS catch this information when the website is running), so while tests (if you would turn on/off touchscreen) you probably need to: switch on/off responsive mode, clear cache and refresh the page. You should see another appointment.
 
 Previous Git history won't be published.
 

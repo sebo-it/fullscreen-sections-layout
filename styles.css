@@ -50,23 +50,22 @@ a{
     opacity: 1;
 
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80vw;
-    height: 80vh;
+
+    width: calc(100% - 2*2rem);
+    height: calc(100vh - 2*2rem);
     background-color: gray;
     z-index: 3;
     
     grid-template-rows: auto auto 1fr;
     justify-items: center;
+    justify-content: center;
 
     padding: 2rem;
     grid-gap: 2rem;
 }
 
 .instruction-popup .first-row{
-    width: 100%;
+    /* width: 100%; */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
@@ -470,12 +469,25 @@ There can't be overflow: hidden, because it stop scrolling.
 }
 
 @media (max-width: 992px) {
+    .instruction-popup{
+        grid-gap: 0.9rem;
+    }
+
     .text{
         font-size: 3rem;
     }
 }
 
 @media (max-width: 768px) {
+
+    .instruction-popup{
+        width: calc(100% - 2*1rem);
+        height: calc(100vh - 2*1rem);
+
+        padding: 1rem;
+        grid-gap: 0.5rem;
+    }
+
     .text{
         font-size: 2rem;
     }
