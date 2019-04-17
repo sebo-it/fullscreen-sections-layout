@@ -489,7 +489,9 @@ There can't be overflow: hidden, because it stop scrolling.
         width: 3vmax;
     }
 
-
+    .left-col{
+        width: 100%;
+    }
 }
 
 @media (max-width: 576px) {
