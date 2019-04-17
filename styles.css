@@ -18,6 +18,11 @@ html, body{
 * {
     font-family: 'Rubik Mono One';
     color: #bbb;
+
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard syntax */
 }
 
 .reset-top-margin{
@@ -96,10 +101,12 @@ a{
     font-size: 3rem;
     cursor: pointer;
 
-    -webkit-user-select: none; /* Safari 3.1+ */
-    -moz-user-select: none; /* Firefox 2+ */
-    -ms-user-select: none; /* IE 10+ */
-    user-select: none; /* Standard syntax */
+    /* If global text selection is disabled, rules below should be disabled;
+    -webkit-user-select: none;
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+    */
 }
 
 .instruction-popup .instruction-content{
@@ -297,11 +304,13 @@ a{
     margin: 10px 0;
     text-decoration: none;
     background-color: rgba(0, 0, 0, 0.089);
+    /* If global text selection is disabled, rules below should be disabled;
+    -webkit-user-select: none;
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+    */
 
-    -webkit-user-select: none; /* Safari 3.1+ */
-    -moz-user-select: none; /* Firefox 2+ */
-    -ms-user-select: none; /* IE 10+ */
-    user-select: none; /* Standard syntax */
 }
 
 .link:hover{
