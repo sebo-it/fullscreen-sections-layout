@@ -240,8 +240,7 @@ a{
     position: fixed;
     opacity: 0;
     left: 0;
-    height: 100vh;
-    padding: 1rem 0;
+    height: 100%;
     background-color: teal;
     z-index: 3;
     display: flex;
@@ -252,7 +251,7 @@ a{
 }
 
 .logo{
-    width: 60%;
+    width: 45%;
 }
 
 .left-col-opener{
@@ -296,7 +295,7 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 60px;
+    /* height: 60px; */
     color: #bbb;
     border: solid 3px #bbb;
     border-radius: 100px;
@@ -489,6 +488,8 @@ There can't be overflow: hidden, because it stop scrolling.
         height: 3vmax;
         width: 3vmax;
     }
+
+
 }
 
 @media (max-width: 576px) {
