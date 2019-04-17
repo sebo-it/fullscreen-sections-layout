@@ -1,4 +1,4 @@
-Website layout based on fullscreen sections which can be slide by:
+Website layout - fullscreen sections, which can be slide by:
 - URL,
 - scroll wheel,
 - mouse swipe,
