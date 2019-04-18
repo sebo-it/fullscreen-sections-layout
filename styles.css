@@ -2,6 +2,7 @@ html{
     /* After font-size change, check .sub-section margin-right
     to remove empty space between inline-blocks.*/
     font-size: 20px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 html, body{

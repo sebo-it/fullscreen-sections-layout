@@ -20,15 +20,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const instructionsWrapper = document.getElementById("instructions");
     const instructionCloseBtn = instructionsWrapper.querySelector("#close-instructions-popup-btn");
     instructionCloseBtn.addEventListener("click", closeInstructions);
-    const instructionsData = [
-        { "imageSrc": "assets/images/scroll-tip.svg", "imageAlt": "Navigation by scroll wheel tip", "text": "scroll wheel" },
-        { "imageSrc": "assets/images/swipe-tip.svg", "imageAlt": "Navigation by drag and drop tip", "text": "swipe by mouse on desktop (drag and drop)" },
-        { "imageSrc": "assets/images/arrow-icons-tip.svg", "imageAlt": "Navigation by arrow icons", "text": "arrow icons" },
-        { "imageSrc": "assets/images/arrow-keyboard-tip.svg", "imageAlt": "Navigation by arrow on keyboard", "text": "arrow buttons on keyboard" },
-        { "imageSrc": "assets/images/ui-dots-tip.svg", "imageAlt": "Navigation by navigation dots", "text": "dots" },
-        { "imageSrc": "assets/images/left-menu-tip.svg", "imageAlt": "Navigation by menu links", "text": "left menu links buttons" }
+    /* instructionsData contains instruction to all types of device.
+    If I would fit instructions to touchscreen availability I should filter it, using key: "screen-type"
+    Current screen-type values:
+    - non-touchscreen
+    - touchscreen
+    - touchscreen-independent
+    */
+    let instructionsData = [
+        { "imageSrc": "assets/images/scroll-tip.svg", "imageAlt": "Navigation by scroll wheel tip", "text": "scroll wheel", "screen-type": "non-touchscreen" },
+        { "imageSrc": "assets/images/swipe-tip.svg", "imageAlt": "Navigation by drag and drop tip", "text": "swipe by mouse on desktop (drag and drop)", "screen-type": "non-touchscreen" },
+        { "imageSrc": "assets/images/arrow-icons-tip.svg", "imageAlt": "Navigation by arrow icons", "text": "arrow icons", "screen-type": "touchscreen-independent" },
+        { "imageSrc": "assets/images/arrow-keyboard-tip.svg", "imageAlt": "Navigation by arrow on keyboard", "text": "arrow buttons on keyboard", "screen-type": "non-touchscreen" },
+        { "imageSrc": "assets/images/ui-dots-tip.svg", "imageAlt": "Navigation by navigation dots", "text": "dots", "screen-type": "touchscreen-independent" },
+        { "imageSrc": "assets/images/left-menu-tip.svg", "imageAlt": "Navigation by menu links", "text": "left menu links buttons", "screen-type": "touchscreen-independent" }
 
     ];
+    
     let currentInstructionIndex = 0;
     const instructionPhoto = instructionsWrapper.querySelector("#instruction-photo");
     const instructionDescription = instructionsWrapper.querySelector("#instruction-description");
@@ -39,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
     nextInstructionBtn.addEventListener("click", showNextInstruction);
     const changeInstructionEvent = new CustomEvent('changeInstruction', { bubbles: true, cancelable: true });
     instructionsWrapper.addEventListener("changeInstruction", changeInstructionEventHandler);
-    instructionsWrapper.dispatchEvent(changeInstructionEvent);
 
     //sectionsWrapper - Main sections container. On this object I will use translateY to show specific vertical section.
     const sectionsWrapper = document.getElementById("sections-wrapper");
@@ -98,23 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const leftColCloseBtn = document.getElementById("close-left-col-btn");
 
-    // check if localstorage is turn on and check if user read an instruction.
-    try {
-        if (window.localStorage) {
-            console.log("localStorage on");
-            const instructionVisitedFlag = localStorage.getItem('instruction_was_displayed_in_the_past');
-            if (instructionVisitedFlag === null) {
-                console.log('show instruction popup and set flag');
-                instructionsWrapper.classList.add("instruction-popup-display");
-                instructionsWrapper.classList.remove("display-none");
-                localStorage.setItem('instruction_was_displayed_in_the_past', '1')
-            }
-        }
-    } catch (error) {
-        console.log("localStorage off");
-        instructionsWrapper.classList.add("instruction-popup-display");
-    }
-
     topArrowBtn.addEventListener('setVisibilityTopArrow', setVisibilityTopArrowEventHandler);
     leftArrowBtn.addEventListener('setVisibilityLeftArrow', setVisibilityLeftArrowEventHandler);
     rightArrowBtn.addEventListener('setVisibilityRightArrow', setVisibilityRightArrowEventHandler);
@@ -142,6 +132,15 @@ document.addEventListener("DOMContentLoaded", () => {
     */
     if ("ontouchstart" in document.documentElement) {
         console.log("your device is a touch screen device.");
+
+        instructionsData = instructionsData.filter((instruction) => {
+            console.log(instruction, instruction["screen-type"] !== "non-touchscreen");
+
+            return instruction["screen-type"] !== "non-touchscreen";
+        });
+        console.log(instructionsData);
+
+
         leftColOpenerBtn.classList.add("left-col-opener-mobile-position");
         topArrowBtn.classList.add("top-arrow-wrapper-mobile-position");
         leftArrowBtn.classList.add("left-arrow-wrapper-mobile-position");
@@ -150,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     else {
         console.log("your device is NOT a touch device");
-        
+
         window.addEventListener('keydown', keydownEventHandler);
         window.addEventListener('keyup', keyUpEventHandler);
         document.addEventListener('wheel', scrollWheelHandler);
@@ -158,10 +157,29 @@ document.addEventListener("DOMContentLoaded", () => {
         sectionsWrapper.addEventListener("mousedown", startSwipeByMouse);
         sectionsWrapper.addEventListener('mousemove', moveSectionWithMouse);
         document.addEventListener('mouseup', finishSwipeByMouse);
-    
+
         document.addEventListener("touchstart", startSwipeByTouch);
         document.addEventListener("touchmove", touchMoveEventHandler);
         document.addEventListener("touchend", touchEndEventHandler);
+    }
+
+    // check if localstorage is turn on and check if user read an instruction.
+    try {
+        if (window.localStorage) {
+            console.log("localStorage on");
+            const instructionVisitedFlag = localStorage.getItem('instruction_was_displayed_in_the_past');
+            if (instructionVisitedFlag === null) {
+                console.log('show instruction popup and set flag');
+                instructionsWrapper.classList.add("instruction-popup-display");
+                instructionsWrapper.classList.remove("display-none");
+                localStorage.setItem('instruction_was_displayed_in_the_past', '1')
+                instructionsWrapper.dispatchEvent(changeInstructionEvent);
+            }
+        }
+    } catch (error) {
+        console.log("localStorage off");
+        instructionsWrapper.classList.add("instruction-popup-display");
+        instructionsWrapper.dispatchEvent(changeInstructionEvent);
     }
 
     window.addEventListener("hashchange", navigateByURL);
@@ -234,6 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 link.href = "#" + (i + 1);
             }
 
+            link.addEventListener("click", closeLeftCol);
             menu.appendChild(link);
         }
     }
